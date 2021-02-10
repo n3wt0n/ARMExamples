@@ -5,8 +5,8 @@ trigger:
   paths:
     exclude:
     - .github
-  pr:
-    - master
+pr:
+  - master
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -23,8 +23,7 @@ stages:
     - task: CmdLine@2
       displayName: Intall JSONlint
       inputs:
-        script: 'npm install jsonlint-cli -g'
-        workingDirectory: 'VM'
+        script: 'sudo npm install jsonlint-cli -g'
     
     - task: CmdLine@2
       displayName: Lint ARM Templates
