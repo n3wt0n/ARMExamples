@@ -45,3 +45,44 @@ stages:
         csmParametersFile: 'VM/parameters.json'
         overrideParameters: '-adminPassword $(Password)'
         deploymentMode: 'Validation'
+    
+    - task: PublishPipelineArtifact@1
+      displayName: Publish Template as Artifact
+      inputs:
+        targetPath: '$(Pipeline.Workspace)/VM'
+        artifact: 'VMTemplate'
+        publishLocation: 'pipeline'
+
+- stage: CD
+  displayName: Deployments
+  condition: ne(variables['Build.Reason'], 'PullRequest')
+  jobs:
+  
+  - deployment: prod    
+    displayName: Deploy to Prod
+    environment: Production
+    strategy:
+      runOnce:
+         deploy:
+           steps:
+
+             - task: DownloadPipelineArtifact@2
+               inputs:
+                 buildType: 'current'
+                 artifactName: 'VMTemplate'
+                 targetPath: '$(Pipeline.Workspace)'
+
+             - task: AzureResourceManagerTemplateDeployment@3
+               displayName: Deploy ARM Template
+               inputs:
+                 deploymentScope: 'Resource Group'
+                 azureResourceManagerConnection: 'Azure Internal'
+                 subscriptionId: $(SubscriptionID)
+                 action: 'Create Or Update Resource Group'
+                 resourceGroupName: 'ARM_Examples'
+                 location: 'Southeast Asia'
+                 templateLocation: 'Linked artifact'
+                 csmFile: 'template.json'
+                 csmParametersFile: 'parameters.json'
+                 overrideParameters: '-adminPassword $(Password)'
+                 deploymentMode: Incremental
