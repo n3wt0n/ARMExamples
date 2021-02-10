@@ -42,6 +42,7 @@ stages:
         location: 'Southeast Asia'
         templateLocation: 'Linked artifact'
         csmFile: 'VM/template.json'
+        csmParametersFile: 'VM/parameters.json'
         deploymentMode: 'Validation'
     
 
