@@ -37,7 +37,7 @@ jobs:
           scope: resourcegroup
           subscriptionId: ${{ secrets.SUBSCRIPTIONID }}
           region: ${{ env.region }}
-          resourceGroupName: ${{ env.ARM_Examples }}
+          resourceGroupName: ${{ env.regGroup }}
           template: VM/template.json
           deploymentMode: Validate
           parameters: VM/parameters.json adminPassword=xxx
@@ -70,7 +70,7 @@ jobs:
           scope: resourcegroup
           subscriptionId: ${{ secrets.SUBSCRIPTIONID }}
           region: ${{ env.region }}
-          resourceGroupName: ${{ env.ARM_Examples }}
+          resourceGroupName: ${{ env.regGroup }}
           template: template.json
           deploymentMode: Validate
           parameters: parameters.json adminPassword=${{ secrets.VM_PASSWORD}}
