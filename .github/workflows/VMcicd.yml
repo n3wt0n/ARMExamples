@@ -17,8 +17,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: ARM Template Toolkit (ARM TTK)
+      - name: ARM Template Toolkit (ARM TTK) Validaiton    
         uses: aliencube/arm-ttk-actions@v0.3
         with:
           path: VM/template.json
-      
+          
+      - name: Deploy Azure Resource Manager (ARM) Template
+        uses: Azure/arm-deploy@v1
+        with:
+          scope: resourcegroup
+          subscriptionId: ${{ secrets.SUBSCRIPTIONID }}
+          region: southeastasia
+          resourceGroupName: ARM_Examples
+          template: VM/template.json
+          deploymentMode: Validate
+          parameters: VM/parameters.json adminPassword=xxx
+            
