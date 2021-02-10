@@ -17,7 +17,7 @@ stages:
       displayName: Intall JSONlint
       inputs:
         command: 'custom'
-        customCommand: 'npm install jsonlint -g'
+        customCommand: 'install jsonlint -g'
     
     - task: CmdLine@2
       displayName: Lint ARM Templates
