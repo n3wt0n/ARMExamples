@@ -82,7 +82,7 @@ stages:
                  resourceGroupName: 'ARM_Examples'
                  location: 'Southeast Asia'
                  templateLocation: 'Linked artifact'
-                 csmFile: 'VMTemplate/VM/template.json'
-                 csmParametersFile: 'VMTemplate/VM/parameters.json'
+                 csmFile: '$(Pipeline.Workspace)/VM/template.json'
+                 csmParametersFile: '$(Pipeline.Workspace)/VM/parameters.json'
                  overrideParameters: '-adminPassword $(Password)'
                  deploymentMode: Incremental
