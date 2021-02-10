@@ -49,7 +49,7 @@ stages:
     - task: PublishPipelineArtifact@1
       displayName: Publish Template as Artifact
       inputs:
-        targetPath: '$(Pipeline.Workspace)/VM'
+        targetPath: 'VM'
         artifact: 'VMTemplate'
         publishLocation: 'pipeline'
 
