@@ -21,8 +21,12 @@ jobs:
         uses: aliencube/arm-ttk-actions@v0.3
         with:
           path: VM/template.json
-          
-      - name: Deploy Azure Resource Manager (ARM) Template
+      
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+      - name: Validate ARM Template
         uses: Azure/arm-deploy@v1
         with:
           scope: resourcegroup
