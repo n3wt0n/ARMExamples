@@ -35,14 +35,13 @@ stages:
       displayName: Validate ARM Template
       inputs:
         deploymentScope: 'Resource Group'
-        azureResourceManagerConnection: 'Microsoft Azure Internal Consumption(cd558c1c-643a-409c-a1f0-d4f07aafadc9)'
-        subscriptionId: 'cd558c1c-643a-409c-a1f0-d4f07aafadc9'
+        azureResourceManagerConnection: 'Azure Internal'
+        subscriptionId: $(SubscriptionID)
         action: 'Create Or Update Resource Group'
         resourceGroupName: 'ARM_Examples'
         location: 'Southeast Asia'
         templateLocation: 'Linked artifact'
         csmFile: 'VM/template.json'
         csmParametersFile: 'VM/parameters.json'
+        overrideParameters: '-adminPassword $(Password)'
         deploymentMode: 'Validation'
-    
-
