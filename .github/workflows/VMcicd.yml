@@ -57,14 +57,19 @@ jobs:
     runs-on: ubuntu-latest
     environment: 
       name: Production
-      url: xxx
+      url: ${{ steps.deployArmProd.outputs.publicIP }}
     steps:
       - name: Download a Build Artifact
         uses: actions/download-artifact@v2.0.8
         with:
-          name: VMTemplate
+          name: VMTemplate         
       
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
       - name: Deploy ARM Template
+        id: deployArmProd
         uses: Azure/arm-deploy@v1
         with:
           scope: resourcegroup
