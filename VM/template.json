@@ -211,9 +211,9 @@
         }
     ],
     "outputs": {
-        "publicIP": {
+        "adminUsername": {
             "type": "string",
-            "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',parameters('publicIPAddressName'))).IpAddress]"
+            "value": "[parameters('adminUsername')]"
         }
     }
 }
