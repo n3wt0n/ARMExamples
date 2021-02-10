@@ -13,11 +13,11 @@ stages:
     displayName: Templates Verification
     steps:
     
-    - task: Npm@1
+    - task: CmdLine@2
       displayName: Intall JSONlint
       inputs:
-        command: 'custom'
-        customCommand: 'install jsonlint-cli -g'
+        script: 'npm install jsonlint-cli -g'
+        workingDirectory: 'VM'
     
     - task: CmdLine@2
       displayName: Lint ARM Templates
