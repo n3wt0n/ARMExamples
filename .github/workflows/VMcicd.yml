@@ -27,7 +27,8 @@ jobs:
         with:
           path: VM/template.json
       
-      - uses: azure/login@v1
+      - name: Login to Azure
+        uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
         
@@ -64,7 +65,8 @@ jobs:
         with:
           name: VMTemplate         
       
-      - uses: azure/login@v1
+      - name: Login to Azure
+        uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           
@@ -77,6 +79,6 @@ jobs:
           region: ${{ env.region }}
           resourceGroupName: ${{ env.regGroup }}
           template: template.json
-          deploymentMode: Validate
+          deploymentMode: Incremental
           parameters: parameters.json adminPassword=${{ secrets.VM_PASSWORD}}
             
