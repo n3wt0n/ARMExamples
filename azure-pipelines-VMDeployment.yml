@@ -17,12 +17,12 @@ stages:
       displayName: Intall JSONlint
       inputs:
         command: 'custom'
-        customCommand: 'install jsonlint -g'
+        customCommand: 'install jsonlint-cli -g'
     
     - task: CmdLine@2
       displayName: Lint ARM Templates
       inputs:
-        script: 'jsonlint *.json'
+        script: 'jsonlint-cli **/*.json'
         workingDirectory: 'VM'
     
 
