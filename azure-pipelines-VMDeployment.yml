@@ -1,5 +1,12 @@
 trigger:
-- main
+  branches:
+    include:
+    - main
+  paths:
+    exclude:
+    - .github
+  pr:
+    - master
 
 pool:
   vmImage: 'ubuntu-latest'
