@@ -31,4 +31,17 @@ stages:
         script: 'jsonlint-cli **/*.json'
         workingDirectory: 'VM'
     
+    - task: AzureResourceManagerTemplateDeployment@3
+      displayName: Validate ARM Template
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'Microsoft Azure Internal Consumption(cd558c1c-643a-409c-a1f0-d4f07aafadc9)'
+        subscriptionId: 'cd558c1c-643a-409c-a1f0-d4f07aafadc9'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'ARM_Examples'
+        location: 'Southeast Asia'
+        templateLocation: 'Linked artifact'
+        csmFile: 'VM/template.json'
+        deploymentMode: 'Validation'
+    
 
