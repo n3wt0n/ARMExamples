@@ -1,0 +1,22 @@
+name: Virtual Machine CICD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: ARM Template Toolkit (ARM TTK)
+        uses: aliencube/arm-ttk-actions@v0.3
+        with:
+          path: VM
+      
