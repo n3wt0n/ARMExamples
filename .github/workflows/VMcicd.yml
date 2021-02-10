@@ -3,8 +3,10 @@ name: Virtual Machine CICD
 on:
   push:
     branches: [ main ]
+    paths-ignore: azure-pipelines-*.*
   pull_request:
-    branches: [ main ]
+    branches: [ main ]    
+    paths-ignore: azure-pipelines-*.*
 
   workflow_dispatch:
 
