@@ -10,6 +10,8 @@ stages:
   jobs:
   
   - job: verification
+    pool:
+      vmImage: 'windows-latest'
     displayName: Templates Verification
     steps:
     - task: AzSKARMTemplateChecker@4
