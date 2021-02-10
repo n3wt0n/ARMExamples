@@ -26,6 +26,13 @@
         "subnets": {
             "type": "array"
         },
+        "dnsLabelPrefix": {
+          "type": "string",
+          "defaultValue": "[toLower(concat(parameters('virtualMachineName'),'-', uniqueString(resourceGroup().id, parameters('virtualMachineName'))))]",
+          "metadata": {
+            "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
+          }
+        },
         "publicIpAddressName": {
             "type": "string"
         },
@@ -126,7 +133,10 @@
             "apiVersion": "2019-02-01",
             "location": "[parameters('location')]",
             "properties": {
-                "publicIpAllocationMethod": "[parameters('publicIpAddressType')]"
+                "publicIpAllocationMethod": "[parameters('publicIpAddressType')]",
+                "dnsSettings": {
+                    "domainNameLabel": "[parameters('dnsLabelPrefix')]"
+                }
             },
             "sku": {
                 "name": "[parameters('publicIpAddressSku')]"
@@ -211,9 +221,9 @@
         }
     ],
     "outputs": {
-        "adminUsername": {
+        "hostname": {
             "type": "string",
-            "value": "[parameters('adminUsername')]"
-        }
+            "value": "[reference(parameters('publicIpAddressName')).dnsSettings.fqdn]"
+          }
     }
 }
