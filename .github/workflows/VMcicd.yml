@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: 
       name: Production
-      url: ${{ steps.deployArmProd.outputs.publicIP }}
+      url: ${{ steps.deployArmProd.outputs.hostname }}
     steps:
       - name: Download a Build Artifact
         uses: actions/download-artifact@v2.0.8
