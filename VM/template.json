@@ -223,7 +223,7 @@
     "outputs": {
         "hostname": {
             "type": "string",
-            "value": "[reference(parameters('publicIpAddressName')).dnsSettings.fqdn]"
+            "value": "[concat('http://',reference(parameters('publicIpAddressName')).dnsSettings.fqdn)]"
           }
     }
 }
